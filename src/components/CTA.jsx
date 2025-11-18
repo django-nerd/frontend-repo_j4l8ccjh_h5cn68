@@ -1,5 +1,6 @@
 import { Mail, ArrowRight } from "lucide-react";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function CTA() {
   const [email, setEmail] = useState("");
@@ -12,9 +13,15 @@ export default function CTA() {
   };
 
   return (
-    <section id="download" className="py-20">
+    <section id="download" className="py-16 md:py-20">
       <div className="max-w-3xl mx-auto px-6">
-        <div className="bg-gradient-to-br from-blue-600 to-indigo-600 rounded-3xl p-8 md:p-12 text-white shadow-2xl border border-white/10">
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.5 }}
+          className="bg-gradient-to-br from-blue-600 to-indigo-600 rounded-3xl p-6 md:p-12 text-white shadow-2xl border border-white/10"
+        >
           <h2 className="text-3xl md:text-4xl font-bold">Be first to try the AI parking scanner</h2>
           <p className="text-white/80 mt-3 mb-6">
             Join the waitlist and we’ll send you early access when it’s ready.
@@ -42,7 +49,7 @@ export default function CTA() {
               </button>
             </form>
           )}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import { ShieldCheck, Clock, Map, Ticket, Sparkles, Zap } from "lucide-react";
+import { motion } from "framer-motion";
 
 const features = [
   {
@@ -15,21 +16,34 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-20">
+    <section id="features" className="py-16 md:py-20">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
+        <motion.h2
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.5 }}
+          className="text-3xl md:text-4xl font-bold text-white text-center mb-12"
+        >
           Built to make city parking effortless
-        </h2>
+        </motion.h2>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map(({ icon: Icon, title, desc }) => (
-            <div key={title} className="group bg-slate-800/50 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-all">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          {features.map(({ icon: Icon, title, desc }, idx) => (
+            <motion.div
+              key={title}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.45, delay: idx * 0.05 }}
+              className="group bg-slate-800/50 border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition-all"
+            >
               <div className="w-12 h-12 rounded-xl bg-blue-500/15 text-blue-300 flex items-center justify-center mb-4 group-hover:bg-blue-500/25">
                 <Icon className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-semibold text-white">{title}</h3>
               <p className="text-blue-200/80 mt-2 text-sm leading-relaxed">{desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
